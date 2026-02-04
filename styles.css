@@ -1,0 +1,323 @@
+/* ============================================
+   LITTLE BLACK BOOK - THEME CONFIGURATION
+   ============================================
+
+   CUSTOMIZATION GUIDE:
+   Edit the CSS variables below to change the entire theme.
+   All colors, fonts, and spacing are controlled from here.
+
+   ============================================ */
+
+:root {
+  /* ===================
+     PRIMARY COLORS
+     =================== */
+  --color-background:       #0a0a0f;      /* Deep black - main background */
+  --color-surface:          #12121a;      /* Slightly lighter - sidebar/cards */
+  --color-surface-hover:    #1a1a24;      /* Hover state for surfaces */
+
+  /* ===================
+     ACCENT COLORS (Illuminati Theme)
+     =================== */
+  --color-gold:             #d4af37;      /* Rich gold - primary accent */
+  --color-gold-muted:       #b8960c;      /* Muted gold - borders, subtle elements */
+  --color-gold-dark:        #8b7355;      /* Dark gold - disabled/tertiary */
+  --color-emerald:          #1a472a;      /* Deep emerald - secondary accent */
+  --color-emerald-glow:     #2d5a3d;      /* Lighter emerald - hover states */
+
+  /* ===================
+     TEXT COLORS
+     =================== */
+  --color-text-primary:     #f5f0e1;      /* Cream - main readable text */
+  --color-text-secondary:   #a89f8a;      /* Muted cream - secondary info */
+  --color-text-accent:      #d4af37;      /* Gold - highlighted text */
+
+  /* ===================
+     STATE COLORS
+     =================== */
+  --color-selected:         #1a1814;      /* Selected item background */
+  --color-selected-border:  #d4af37;      /* Selected item border */
+  --color-hover:            #1e1e28;      /* Hover background */
+
+  /* ===================
+     BORDER COLORS
+     =================== */
+  --color-border:           #2a2a35;      /* Subtle borders */
+  --color-border-accent:    #3d3522;      /* Gold-tinted borders */
+
+  /* ===================
+     TYPOGRAPHY
+     =================== */
+  --font-display:           'Cinzel', serif;        /* Headers - elegant, archival */
+  --font-body:              'Roboto', sans-serif;   /* Body text - clean, readable */
+
+  /* ===================
+     SPACING
+     =================== */
+  --spacing-xs:             8px;
+  --spacing-sm:             12px;
+  --spacing-md:             16px;
+  --spacing-lg:             24px;
+  --spacing-xl:             32px;
+
+  /* ===================
+     BORDERS & EFFECTS
+     =================== */
+  --border-radius:          4px;
+  --shadow-subtle:          0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-glow:            0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  margin: 0;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.sidebar {
+  width: 30%;
+  min-width: 280px;
+  max-width: 400px;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header / Branding */
+.header {
+  padding: var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border-accent);
+  text-align: center;
+  background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-background) 100%);
+}
+
+.site-title {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  margin: 0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.site-tagline {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin: var(--spacing-xs) 0 0 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* Search Bar */
+.search-bar {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+#searchInput {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#searchInput::placeholder {
+  color: var(--color-text-secondary);
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: var(--color-gold-muted);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+/* Email List */
+.email-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.email-item {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: background 0.2s ease, border-left 0.2s ease;
+  border-left: 3px solid transparent;
+}
+
+.email-item:hover {
+  background: var(--color-hover);
+  border-left-color: var(--color-gold-dark);
+}
+
+.email-item.selected {
+  background: var(--color-selected);
+  border-left-color: var(--color-gold);
+}
+
+.email-item strong {
+  display: block;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.email-item small {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+
+.email-item.selected strong {
+  color: var(--color-gold);
+}
+
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  overflow-y: auto;
+}
+
+.viewer {
+  padding: var(--spacing-xl);
+  flex: 1;
+}
+
+/* Welcome Message (before email selected) */
+.welcome-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--color-text-secondary);
+}
+
+.welcome-icon {
+  font-size: 3rem;
+  color: var(--color-gold-muted);
+  margin-bottom: var(--spacing-md);
+  opacity: 0.5;
+}
+
+.welcome-message p {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+}
+
+/* Email Content */
+.viewer h1 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-gold);
+  margin: 0 0 var(--spacing-lg);
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--color-border-accent);
+}
+
+.viewer p {
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: var(--spacing-xs) 0;
+}
+
+.viewer p strong {
+  color: var(--color-gold-muted);
+}
+
+.viewer .body {
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+
+/* ============================================
+   SCROLLBAR STYLING
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dark);
+}
+
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    height: 50vh;
+  }
+
+  .main {
+    height: 50vh;
+  }
+
+  .site-title {
+    font-size: 1.2rem;
+  }
+}
