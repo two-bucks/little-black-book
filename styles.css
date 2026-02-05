@@ -321,3 +321,177 @@ body {
     font-size: 1.2rem;
   }
 }
+
+
+/* ============================================
+   ATTACHMENTS & MEDIA
+   ============================================ */
+
+.attachment-icon {
+  margin-left: var(--spacing-xs);
+  font-size: 0.8rem;
+}
+
+.attachments-section {
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--color-border-accent);
+}
+
+.attachments-section h3 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--color-gold);
+  margin: 0 0 var(--spacing-md);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.attachments-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--spacing-md);
+}
+
+/* Base attachment styling */
+.attachment {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.attachment:hover {
+  border-color: var(--color-gold-muted);
+  box-shadow: var(--shadow-glow);
+}
+
+.attachment-name {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-xs);
+  word-break: break-word;
+}
+
+.attachment-link {
+  color: var(--color-gold);
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.attachment-link:hover {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+}
+
+/* Image attachments */
+.attachment-image img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.attachment-image img:hover {
+  transform: scale(1.02);
+}
+
+/* PDF attachments */
+.attachment-pdf {
+  grid-column: span 2;
+}
+
+.attachment-pdf iframe {
+  width: 100%;
+  height: 400px;
+  border: none;
+  border-radius: var(--border-radius);
+  background: var(--color-background);
+}
+
+.attachment-pdf .attachment-link {
+  margin-top: var(--spacing-sm);
+}
+
+/* Video attachments */
+.attachment-video {
+  grid-column: span 2;
+}
+
+.attachment-video video {
+  width: 100%;
+  border-radius: var(--border-radius);
+  background: #000;
+}
+
+/* Document attachments */
+.attachment-document {
+  display: flex;
+  align-items: center;
+}
+
+.doc-icon {
+  font-size: 1.5rem;
+  margin-right: var(--spacing-xs);
+}
+
+/* Fullscreen overlay for images */
+.fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.fullscreen-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border: 2px solid var(--color-gold-muted);
+  border-radius: var(--border-radius);
+}
+
+.close-fullscreen {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: var(--color-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close-fullscreen:hover {
+  color: var(--color-gold);
+}
+
+/* Responsive adjustments for attachments */
+@media (max-width: 768px) {
+  .attachments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attachment-pdf,
+  .attachment-video {
+    grid-column: span 1;
+  }
+
+  .attachment-pdf iframe {
+    height: 300px;
+  }
+}

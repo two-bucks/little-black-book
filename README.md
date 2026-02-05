@@ -94,8 +94,12 @@ Jmail-Island/
 ├── index.html      # Main HTML structure and branding
 ├── styles.css      # All styling and theme variables
 ├── script.js       # Email loading, search, and display logic
-├── emails.json     # Email data (DO NOT EDIT for functionality)
-└── README.md       # This file
+├── emails.json     # Email data
+├── README.md       # This file
+└── media/          # Media attachments folder
+    ├── images/     # Image files (jpg, png, gif)
+    ├── documents/  # PDF and document files
+    └── videos/     # Video files (mp4, mov)
 ```
 
 ### Safe to Edit:
@@ -128,6 +132,66 @@ When adding emails, ensure:
 - Each email has a unique `id`
 - The `date` is in ISO 8601 format
 - The `to` field is an array (even for single recipients)
+
+---
+
+## Adding Media Attachments
+
+The viewer supports images, PDFs, videos, and documents. To add attachments:
+
+### Step 1: Add the file to the media folder
+```
+media/images/    → for .jpg, .png, .gif, .webp
+media/documents/ → for .pdf, .doc, .docx, .txt
+media/videos/    → for .mp4, .mov, .webm
+```
+
+### Step 2: Add the attachment reference to the email in `emails.json`
+
+```json
+{
+  "id": 1,
+  "from": "sender@example.com",
+  "to": ["recipient@example.com"],
+  "subject": "Email with Photo",
+  "date": "2025-01-15T10:00:00Z",
+  "body": "See attached photo.",
+  "attachments": [
+    {
+      "filename": "photo.jpg",
+      "type": "image"
+    }
+  ]
+}
+```
+
+### Attachment Types
+
+| Type | Behavior |
+|------|----------|
+| **Images** (.jpg, .png, .gif) | Displayed inline, click to fullscreen |
+| **PDFs** (.pdf) | Embedded viewer with download link |
+| **Videos** (.mp4, .mov) | Video player with controls |
+| **Documents** (.doc, .docx) | Download link |
+
+### Using External URLs
+
+Instead of hosting files locally, you can link to external sources:
+
+```json
+"attachments": [
+  {
+    "filename": "document.pdf",
+    "type": "document",
+    "url": "https://example.gov/files/document.pdf"
+  }
+]
+```
+
+### GitHub Size Limits
+- Individual files: max 100 MB
+- Total repo size: keep under 1 GB for best performance
+- For large videos: use external hosting (YouTube, Vimeo) and link
 
 ---
 
