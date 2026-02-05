@@ -62,12 +62,18 @@ function renderAttachments(attachments) {
       `;
     }
 
-    // PDFs
+    // PDFs - styled card with open button (iframes blocked by most gov sites)
     if (ext === 'pdf') {
       return `
         <div class="attachment attachment-pdf">
-          <iframe src="${path}" title="${att.filename}"></iframe>
-          <a href="${path}" target="_blank" class="attachment-link">Open PDF: ${att.filename}</a>
+          <div class="pdf-preview">
+            <span class="pdf-icon">📄</span>
+            <span class="pdf-label">PDF Document</span>
+          </div>
+          <span class="attachment-name">${att.filename}</span>
+          <a href="${path}" target="_blank" class="attachment-link pdf-button">
+            Open PDF ↗
+          </a>
         </div>
       `;
     }
